@@ -1,0 +1,234 @@
+// project oop.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include<iostream>
+#include<string>
+using namespace std;
+class parking
+{
+	string name;
+	int ID;
+public:
+//constructor
+	parking()
+	{
+	name='\0';
+	ID=0;
+	}
+	parking(string n,int I)//constructor having argument(parametrize constructor)
+	{
+	name=n;
+	ID=I;
+	}
+	virtual void getdata()
+	{
+	cout<<"Enter your name"<<endl;
+	cin>>name;
+	cout<<"enter your CNIC number"<<endl;
+	cin>>ID;
+	}
+	virtual void putdata()
+	{
+	cout<<"Your name:  "<<name<<endl;
+	cout<<"Your CNIC number:  "<<ID<<endl;
+	}
+	
+};
+class Car:public parking //inheritence(single)
+{     
+	string carno;
+	string carmodel;
+	string carcolor;
+public:
+	//constructors
+	Car()
+	{
+		parking::parking();
+	carno='\0';
+   carmodel='\0';
+   carcolor='\0';
+	}
+	Car(string c,string a, string r,string n,int I):parking(n,I)
+	{
+	carno=c;
+    carmodel=a;
+    carcolor=r;
+	}
+
+	void getdata()
+	{ parking::getdata();
+	cout<<"Enter your car number"<<endl;
+	cin>>carno;
+	cout<<"Enter your car model"<<endl;
+	cin>>carmodel;
+	cout<<"Enter your  car color"<<endl;
+	cin>>carcolor;
+	}
+	void putdata()
+	{parking::putdata();
+	cout<<"Your car number:  "<<carno<<endl;
+	cout<<"Your car model:  "<<carmodel<<endl;
+	cout<<"Your car color:  "<<carcolor<<endl;
+	}
+
+};
+class Riksha: public parking
+{
+	string Rikshano;
+	string Rikshamodel;
+	string Rikshacolor;
+public:
+	//constructors
+	Riksha()
+	{parking::parking();
+	 Rikshano='\0';
+	Rikshamodel='\0';
+	 Rikshacolor='\0';
+	}
+	Riksha(string i,string k,string j,string n,int I):parking(n,I)
+	{
+	 Rikshano=i;
+	Rikshamodel=k;
+	 Rikshacolor=j;
+	}
+	void getdata()
+	{
+		parking::getdata();
+	cout<<"Enter your Riksha number"<<endl;
+	cin>>Rikshano;
+	cout<<"Enter your Riksha model"<<endl;
+	cin>>Rikshamodel;
+	cout<<"Enter your  Riksha color"<<endl;
+	cin>>Rikshacolor;
+	}
+	void putdata()
+	{ parking::putdata();
+	cout<<"Your Riksha number:  "<<Rikshano<<endl;
+	cout<<"Your Riksha model:  "<<Rikshamodel<<endl;
+	cout<<"Your Riksha color:  "<<Rikshacolor<<endl;
+	}
+};
+class Bus: public parking
+{
+	string Busno;
+	string Busmodel;
+	string Buscolor;
+public:
+	Bus()
+	{ parking::parking();
+	Busno='\0';
+	Busmodel='\0';
+	Buscolor='\0';
+	}
+	Bus(string a,string b,string c,string n,int I):parking(n,I)
+	{
+	Busno=a;
+	Busmodel=b;
+	Buscolor=c;
+	}
+	void getdata()
+	{  parking::getdata();
+	cout<<"Enter your Bus number"<<endl;
+	cin>>Busno;
+	cout<<"Enter your Bus model"<<endl;
+	cin>>Busmodel;
+	cout<<"Enter your  Bus color"<<endl;
+	cin>>Buscolor;
+	}
+	void putdata()
+	{parking::putdata();
+	cout<<"Your Bus number:  "<<Busno<<endl;
+	cout<<"Your Bus model:  "<<Busmodel<<endl;
+	cout<<"Your Bus color:  "<<Buscolor<<endl;
+	}
+};
+
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	{parking* a[100];
+    int op=0;
+	int n=0;
+	int amount =0;
+	do
+{   cout<<"\n!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*\n"<<endl;
+	cout<<"\nWelcome to vehicle parking management system\n"<<endl;
+	cout<<"\n!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*\n"<<endl;
+	cout<<"Press 1 for Car parking"<<endl;
+	cout<<"Press 2 for Riksha parking"<<endl;
+	cout<<"Press 3 for Bus parking"<<endl;
+	cout<<"Press 4 to exit"<<endl;
+	cin>>op;
+	if(op==1)
+	{ cout<<"************************************"<<endl;
+		cout<<"You have selected parking for car"<<endl;
+		cout<<"Car parking fee is 50 Rupees"<<endl;
+		amount=amount+50;
+		cout<<"Total amount:  "<<amount<<endl;
+//dynamic allocation 
+	a[n]=new Car;
+	a[n]->getdata();
+	a[n]->putdata();
+	n++;
+	cout<<"*******************************************"<<endl;
+	if(n<100)
+    {
+		cout<<"Your Car has been parked successfully"<<endl;
+		cout<<"Your token number is:  00"<<n<<endl;
+		
+	}
+	else
+		cout<<"Sorry,parking is full,no space available"<<endl;
+
+	}
+	cout<<"*******************************************"<<endl;
+	if(op==2)
+	{cout<<"************************************"<<endl;
+		cout<<"You have selected parking for Riksha"<<endl;
+		cout<<"Riksha parking fee is 30 Rupees"<<endl;
+		amount=amount+30;
+		cout<<"Total Amount:  "<<amount<<endl;
+	a[n]=new Riksha;
+	a[n]->getdata();
+	a[n]->putdata();
+	n++;
+	if(n<100)
+    {
+		cout<<"Your Riksha has been parked successfully"<<endl;
+		cout<<"Your token number is:  00"<<n<<endl;
+	}
+	else
+		cout<<"Sorry,parking is full,no space available"<<endl;
+	}
+	if(op==3)
+	{cout<<"************************************"<<endl;
+		cout<<"You have selected parking for Bus"<<endl;
+		cout<<"Bus parking fee is 100 Rupees"<<endl;
+		amount=amount+100;
+		cout<<"Total Amount:  "<<amount<<endl;
+	a[n]=new Bus;
+	a[n]->getdata();
+	a[n]->putdata();
+	n++;
+	if(n<100)
+    {
+		cout<<"Your Bus has been parked successfully"<<endl;
+		cout<<"Your token number is:  00"<<n<<endl;
+	}
+	else
+		cout<<"Sorry,parking is full,no space available"<<endl;
+	}
+
+	cout<<"Number of vehicles that are parked in parking are now:  "<<n<<endl;
+}while(op==3);
+	cout<<"************************************"<<endl;
+	cout<<"Thank u for your visit"<<endl;
+	cout<<"************************************"<<endl;
+	
+	system("pause");
+	return 0;
+
+	}
+
+}
